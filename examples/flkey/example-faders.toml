@@ -1,0 +1,127 @@
+# Note: not all FLkey models have faders & buttons. This configuration applies
+# only to FLkey 49 and 61.
+
+version = 2
+device = "flkey-faders"
+name = "My Custom Mode"
+
+# The color of the buttons below each fader when pressed or toggled. Colors are
+# numbers from 0-127; see doc/colors.html for a list.
+active-color = 3
+
+# Map fader 1 (furthest left) to MIDI CC 16. No MIDI channel is specified so
+# the global device channel will be used.
+[faders.1]
+cc = 16
+
+# Map fader 2 to CC 17, and always use MIDI channel 1.
+[faders.2]
+cc = 17
+channel = 1
+
+# Map fader 3 to CC 18 on channel 16.
+[faders.3]
+cc = 18
+channel = 16
+
+# Map fader 4 to CC 19 on the global channel, but restrict the range of values to
+# 50-100 instead of the full 0-127.
+[faders.4]
+cc = 19
+min = 50
+max = 100
+
+# If `min` is greater than `max`, the control operates in reverse.
+[faders.5]
+cc = 100
+min = 127
+max = 0
+
+# `pickup` controls whether the device tries to prevent sudden changes in value
+# when the position of the fader is out of sync with the associated control.
+# Can be `true` or `false`; if omitted, the device's global pickup setting is
+# used.
+[faders.6]
+cc = 101
+pickup = true
+
+# (Fader 7 is omitted, so it will be disabled.)
+
+[faders.8]
+cc = 102
+
+[faders.9]
+cc = 103
+
+# Button 1 (furthest left, below fader 1) will set MIDI CC 29 to 127 (maximum
+# CC value) when pressed and 0 when released. The messages are sent on the
+# current global device channel.
+[buttons.1]
+color = 13
+cc = 29
+
+# Button 2 sets MIDI CC 30 to 20 when pressed and 90 when released, always on
+# channel 7.
+[buttons.2]
+color = 98
+[buttons.2.cc]
+number = 30
+channel = 7
+off = 90
+on = 20
+
+# When pressed and released once, button 3 sets MIDI CC 31 to 75. When pressed
+# again, CC 31 is set to 25.
+[buttons.3]
+color = 16
+[buttons.3.cc]
+behavior = "toggle"
+number = 31
+off = 25
+on = 75
+
+# Button 4 plays D#4 with velocity 50, always on channel 16.
+[buttons.4]
+color = 34
+[buttons.4.note]
+pitch = "D#4"
+velocity = 50
+channel = 16
+
+# When pressed and released, button 5 starts playing E#4 (F4) on the global
+# channel with maximum velocity. When pressed again, the note is stopped.
+[buttons.5]
+color = 26
+[buttons.5.note]
+pitch = "E#4"
+velocity = 127
+behavior = "toggle"
+
+# Button 6 sends a MIDI Program Change message with program number 15.
+[buttons.6]
+color = 35
+prog = 15
+
+# Button 7 sends a MIDI Program Change message with program number 16, always
+# on channel 2.
+[buttons.7]
+color = 29
+[buttons.7.prog]
+number = 16
+channel = 2
+
+# Button 8 simulates a press of the spacebar on a computer keyboard. Keys are
+# specified with USB HID keycodes (keyboard usage codes); see doc/keycodes.md
+# for a list. 0x2c is the code for the spacebar.
+[buttons.8]
+color = 32
+keypress = 0x2c
+
+# Button 9 sends Ctrl+Alt+Delete (0x4c is the USB keycode for the Delete key).
+# Note that the color of button 9 cannot be customized, regardless of what
+# action it performs.
+[buttons.9.keypress]
+keycode = 0x4c
+ctrl = true
+shift = false
+alt = true

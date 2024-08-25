@@ -1,0 +1,260 @@
+version = 2
+device = "launchpad-x"
+name = "Colors 64-127"
+active-color = 0
+
+[pads.1]
+color = 64
+note = 64
+
+[pads.2]
+color = 65
+note = 65
+
+[pads.3]
+color = 66
+note = 66
+
+[pads.4]
+color = 67
+note = 67
+
+[pads.5]
+color = 68
+note = 68
+
+[pads.6]
+color = 69
+note = 69
+
+[pads.7]
+color = 70
+note = 70
+
+[pads.8]
+color = 71
+note = 71
+
+[pads.9]
+color = 72
+note = 72
+
+[pads.10]
+color = 73
+note = 73
+
+[pads.11]
+color = 74
+note = 74
+
+[pads.12]
+color = 75
+note = 75
+
+[pads.13]
+color = 76
+note = 76
+
+[pads.14]
+color = 77
+note = 77
+
+[pads.15]
+color = 78
+note = 78
+
+[pads.16]
+color = 79
+note = 79
+
+[pads.17]
+color = 80
+note = 80
+
+[pads.18]
+color = 81
+note = 81
+
+[pads.19]
+color = 82
+note = 82
+
+[pads.20]
+color = 83
+note = 83
+
+[pads.21]
+color = 84
+note = 84
+
+[pads.22]
+color = 85
+note = 85
+
+[pads.23]
+color = 86
+note = 86
+
+[pads.24]
+color = 87
+note = 87
+
+[pads.25]
+color = 88
+note = 88
+
+[pads.26]
+color = 89
+note = 89
+
+[pads.27]
+color = 90
+note = 90
+
+[pads.28]
+color = 91
+note = 91
+
+[pads.29]
+color = 92
+note = 92
+
+[pads.30]
+color = 93
+note = 93
+
+[pads.31]
+color = 94
+note = 94
+
+[pads.32]
+color = 95
+note = 95
+
+[pads.33]
+color = 96
+note = 96
+
+[pads.34]
+color = 97
+note = 97
+
+[pads.35]
+color = 98
+note = 98
+
+[pads.36]
+color = 99
+note = 99
+
+[pads.37]
+color = 100
+note = 100
+
+[pads.38]
+color = 101
+note = 101
+
+[pads.39]
+color = 102
+note = 102
+
+[pads.40]
+color = 103
+note = 103
+
+[pads.41]
+color = 104
+note = 104
+
+[pads.42]
+color = 105
+note = 105
+
+[pads.43]
+color = 106
+note = 106
+
+[pads.44]
+color = 107
+note = 107
+
+[pads.45]
+color = 108
+note = 108
+
+[pads.46]
+color = 109
+note = 109
+
+[pads.47]
+color = 110
+note = 110
+
+[pads.48]
+color = 111
+note = 111
+
+[pads.49]
+color = 112
+note = 112
+
+[pads.50]
+color = 113
+note = 113
+
+[pads.51]
+color = 114
+note = 114
+
+[pads.52]
+color = 115
+note = 115
+
+[pads.53]
+color = 116
+note = 116
+
+[pads.54]
+color = 117
+note = 117
+
+[pads.55]
+color = 118
+note = 118
+
+[pads.56]
+color = 119
+note = 119
+
+[pads.57]
+color = 120
+note = 120
+
+[pads.58]
+color = 121
+note = 121
+
+[pads.59]
+color = 122
+note = 122
+
+[pads.60]
+color = 123
+note = 123
+
+[pads.61]
+color = 124
+note = 124
+
+[pads.62]
+color = 125
+note = 125
+
+[pads.63]
+color = 126
+note = 126
+
+[pads.64]
+color = 127
+note = 127

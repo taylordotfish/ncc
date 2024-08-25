@@ -1,0 +1,68 @@
+version = 2
+device = "launchkey-mk3-pads"
+name = "Colors 80-95"
+active-color = 0
+
+[pads.1]
+color = 80
+note = 80
+
+[pads.2]
+color = 81
+note = 81
+
+[pads.3]
+color = 82
+note = 82
+
+[pads.4]
+color = 83
+note = 83
+
+[pads.5]
+color = 84
+note = 84
+
+[pads.6]
+color = 85
+note = 85
+
+[pads.7]
+color = 86
+note = 86
+
+[pads.8]
+color = 87
+note = 87
+
+[pads.9]
+color = 88
+note = 88
+
+[pads.10]
+color = 89
+note = 89
+
+[pads.11]
+color = 90
+note = 90
+
+[pads.12]
+color = 91
+note = 91
+
+[pads.13]
+color = 92
+note = 92
+
+[pads.14]
+color = 93
+note = 93
+
+[pads.15]
+color = 94
+note = 94
+
+[pads.16]
+color = 95
+note = 95

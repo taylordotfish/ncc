@@ -1,0 +1,68 @@
+version = 2
+device = "flkey-mini-pads"
+name = "Colors 64-79"
+active-color = 0
+
+[pads.1]
+color = 64
+note = 64
+
+[pads.2]
+color = 65
+note = 65
+
+[pads.3]
+color = 66
+note = 66
+
+[pads.4]
+color = 67
+note = 67
+
+[pads.5]
+color = 68
+note = 68
+
+[pads.6]
+color = 69
+note = 69
+
+[pads.7]
+color = 70
+note = 70
+
+[pads.8]
+color = 71
+note = 71
+
+[pads.9]
+color = 72
+note = 72
+
+[pads.10]
+color = 73
+note = 73
+
+[pads.11]
+color = 74
+note = 74
+
+[pads.12]
+color = 75
+note = 75
+
+[pads.13]
+color = 76
+note = 76
+
+[pads.14]
+color = 77
+note = 77
+
+[pads.15]
+color = 78
+note = 78
+
+[pads.16]
+color = 79
+note = 79

@@ -1,0 +1,44 @@
+version = 2
+device = "launchkey-mk3-pots"
+name = "My Custom Mode"
+
+# Map pot 1 (furthest left) to MIDI CC 16. No MIDI channel is specified so the
+# global device channel will be used.
+[pots.1]
+cc = 16
+
+# Map pot 2 to CC 17, and always use MIDI channel 1.
+[pots.2]
+cc = 17
+channel = 1
+
+# Map pot 3 to CC 18 on channel 16.
+[pots.3]
+cc = 18
+channel = 16
+
+# Map pot 4 to CC 19 on the global channel, but restrict the range of values to
+# 50-100 instead of the full 0-127.
+[pots.4]
+cc = 19
+min = 50
+max = 100
+
+# If `min` is greater than `max`, the control operates in reverse.
+[pots.5]
+cc = 100
+min = 127
+max = 0
+
+# `pickup` controls whether the device tries to prevent sudden changes in value
+# when the position of the knob is out of sync with the associated control. Can
+# be `true` or `false`; if omitted, the device's global pickup setting is used.
+[pots.6]
+cc = 101
+pickup = true
+
+[pots.7]
+cc = 102
+
+[pots.8]
+cc = 103

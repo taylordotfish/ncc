@@ -1,0 +1,68 @@
+version = 2
+device = "launchkey-mini-mk3-pads"
+name = "Colors 32-47"
+active-color = 0
+
+[pads.1]
+color = 32
+note = 32
+
+[pads.2]
+color = 33
+note = 33
+
+[pads.3]
+color = 34
+note = 34
+
+[pads.4]
+color = 35
+note = 35
+
+[pads.5]
+color = 36
+note = 36
+
+[pads.6]
+color = 37
+note = 37
+
+[pads.7]
+color = 38
+note = 38
+
+[pads.8]
+color = 39
+note = 39
+
+[pads.9]
+color = 40
+note = 40
+
+[pads.10]
+color = 41
+note = 41
+
+[pads.11]
+color = 42
+note = 42
+
+[pads.12]
+color = 43
+note = 43
+
+[pads.13]
+color = 44
+note = 44
+
+[pads.14]
+color = 45
+note = 45
+
+[pads.15]
+color = 46
+note = 46
+
+[pads.16]
+color = 47
+note = 47

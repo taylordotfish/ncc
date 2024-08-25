@@ -1,0 +1,5 @@
+version = 2
+device = "flkey-pedal"
+
+# Map the sustain pedal to MIDI CC 80.
+cc = 80

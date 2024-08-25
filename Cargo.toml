@@ -1,0 +1,26 @@
+[package]
+name = "ncc"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.74"
+description = "Custom-mode compiler for Novation MIDI devices"
+documentation = "https://github.com/taylordotfish/ncc"
+readme = ".misc/package-readme.md"
+repository = "https://github.com/taylordotfish/ncc"
+license = "AGPL-3.0-or-later"
+keywords = ["novation", "launchkey", "launchpad", "components", "compiler"]
+categories = ["compilers", "encoding", "command-line-utilities"]
+exclude = ["*.png", "/tests"]
+
+[dependencies.serde]
+version = "1.0"
+features = ["derive"]
+
+[dependencies.toml]
+version = "0.8"
+default-features = false
+features = ["parse"]
+
+[dev-dependencies]
+sha2 = "0.10.8"
+hex-literal = "0.4"

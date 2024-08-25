@@ -1,0 +1,3 @@
+version = 2
+device = "launchkey-mk3-pedal"
+cc = 64

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<!-----------------------------------------------------------------------------
+    For a version of this page rendered as an image, see colors.png.
+------------------------------------------------------------------------------>
+<!--
+    Copyright (C) 2021, 2024 taylor.fish <contact@taylor.fish>
+
+    This file is part of ncc.
+
+    ncc is free software: you can redistribute it and/or modify it under
+    the terms of the GNU Affero General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    ncc is distributed in the hope that it will be useful, but WITHOUT
+    ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+    or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General
+    Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public
+    License along with ncc. If not, see <https://www.gnu.org/licenses/>.
+-->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Colors</title>
+<style>
+    html {
+        font-family: sans-serif;
+        font-size: 16px;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        margin: 0;
+        padding: 2em;
+    }
+
+    td {
+        padding-top: 0.1em;
+        padding-bottom: 0.1em;
+    }
+
+    tr > td:nth-child(odd) {
+        text-align: right;
+        padding-left: 1.33em;
+        padding-right: 0.67em;
+    }
+
+    tr > td:nth-child(even) {
+        width: 4em;
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+
+    #match {
+        margin-top: 1.5em;
+    }
+
+    #match > div {
+        margin-top: 0.5em;
+    }
+
+    #match > div > * {
+        vertical-align: middle;
+    }
+
+    #match .select input {
+        margin-left: 0.6em;
+        max-width: 6em;
+        width: 100%;
+    }
+
+    #match .closest table {
+        display: inline-block;
+    }
+
+    #match .closest .index {
+        padding-left: 0.33em;
+    }
+</style>
+<script>
+    // @license magnet:?xt=urn:btih:0b31508aeb0634b347b8270c7bee4d411b5d4109&dn=agpl-3.0.txt AGPL-3.0-or-later
+    // Copyright (C) 2021, 2024 taylor.fish <contact@taylor.fish>
+    const LAB_XYZ_SIGMA = 6 / 29;
+    const LAB_XYZ_SIGMA_SQUARED = LAB_XYZ_SIGMA * LAB_XYZ_SIGMA;
+    const LAB_XYZ_SIGMA_CUBED = LAB_XYZ_SIGMA_SQUARED * LAB_XYZ_SIGMA;
+    const XYZ_D65_XN = 0.95047;
+    const XYZ_D65_YN = 1;
+    const XYZ_D65_ZN = 1.08883;
+    const VAL_25_POW_7 = 6103515625;
+
+    function toDeg(rad) {
+        return rad * (180 / Math.PI);
+    }
+
+    function toRad(deg) {
+        return deg * (Math.PI / 180);
+    }
+
+    function atan2OrZero(y, x) {
+        return (x == 0 && y == 0) ? 0 : Math.atan2(y, x);
+    }
+
+    class SrgbColor {
+        r;
+        g;
+        b;
+
+        constructor(r, g, b) {
+            this.r = r;
+            this.g = g;
+            this.b = b;
+        }
+
+        static fromHex(hex) {
+            if (hex.startsWith("#")) {
+                hex = hex.substr(1);
+            }
+            return new this(
+                parseInt(hex.substr(0, 2), 16) / 255,
+                parseInt(hex.substr(2, 2), 16) / 255,
+                parseInt(hex.substr(4, 2), 16) / 255,
+            );
+        }
+
+        toRgb() {
+            function srgbInverse(value) {
+                if (value <= 0.04045) {
+                    return value / 12.92;
+                }
+                return Math.pow((value + 0.055) / 1.055, 2.4);
+            }
+
+            return new RgbColor(
+                srgbInverse(this.r),
+                srgbInverse(this.g),
+                srgbInverse(this.b),
+            );
+        }
+
+        toLab() {
+            return this.toRgb().toXyz().toLab();
+        }
+    }
+
+    class RgbColor {
+        r;
+        g;
+        b;
+
+        constructor(r, g, b) {
+            this.r = r;
+            this.g = g;
+            this.b = b;
+        }
+
+        toXyz() {
+            return new XyzColor(
+                this.r * 0.4124 + this.g * 0.3576 + this.b * 0.1805,
+                this.r * 0.2126 + this.g * 0.7152 + this.b * 0.0722,
+                this.r * 0.0193 + this.g * 0.1192 + this.b * 0.9505,
+            );
+        }
+    }
+
+    class XyzColor {
+        x;
+        y;
+        z;
+
+        constructor(x, y, z) {
+            this.x = x;
+            this.y = y;
+            this.z = z;
+        }
+
+        toLab() {
+            function f(value) {
+                if (value > LAB_XYZ_SIGMA_CUBED) {
+                    return Math.cbrt(value);
+                }
+                return value / (3 * LAB_XYZ_SIGMA_SQUARED) + (4 / 29);
+            }
+
+            const fYYn = f(this.y / XYZ_D65_YN);
+            return new LabColor(
+                116 * fYYn - 16,
+                500 * (f(this.x / XYZ_D65_XN) - fYYn),
+                200 * (fYYn - f(this.z / XYZ_D65_ZN)),
+            );
+        }
+    }
+
+    class LabColor {
+        L;
+        a;
+        b;
+
+        constructor(L, a, b) {
+            this.L = L;
+            this.a = a;
+            this.b = b;
+        }
+
+        ciede2000(other) {
+            function aPrime(a) {
+                const C7 = CavgPow7;
+                return a + (a / 2)
+                    * (1 - Math.sqrt(C7 / (C7 + VAL_25_POW_7)));
+            }
+
+            function hPrime(b, aP) {
+                let hP = toDeg(atan2OrZero(b, aP));
+                if (hP < 0) {
+                    hP += 360;
+                }
+                return hP;
+            }
+
+            const dLp = other.L - this.L;
+            const Lavg = (this.L + other.L) / 2;
+            const C1 = Math.hypot(this.a, this.b);
+            const C2 = Math.hypot(other.a, other.b);
+            const Cavg = (C1 + C2) / 2;
+            const CavgPow7 = Math.pow(Cavg, 7);
+            const a1p = aPrime(this.a);
+            const a2p = aPrime(other.a);
+            const C1p = Math.hypot(a1p, this.b);
+            const C2p = Math.hypot(a2p, other.b);
+            const CavgP = (C1p + C2p) / 2;
+            const dCp = C2p - C1p;
+            const h1p = hPrime(this.b, a1p);
+            const h2p = hPrime(other.b, a2p);
+            const dhP = (() => {
+                if (Math.abs(h1p - h2p) <= 180) {
+                    return h2p - h1p;
+                }
+                if (h2p <= h1p) {
+                    return h2p - h1p + 360;
+                }
+                return h2p - h1p - 360;
+            })();
+            const dHp = 2 * Math.sqrt(C1p * C2p) * Math.sin(toRad(dhP / 2));
+            const HavgP = (() => {
+                if (Math.abs(h1p - h2p) <= 180) {
+                    return (h1p + h2p) / 2;
+                }
+                if (h1p + h2p < 360) {
+                    return (h1p + h2p + 360) / 2;
+                }
+                return (h1p + h2p - 360) / 2;
+            })();
+            const T = 1
+                - 0.17 * Math.cos(toRad(HavgP - 30))
+                + 0.24 * Math.cos(toRad(2 * HavgP))
+                + 0.32 * Math.cos(toRad(3 * HavgP + 6))
+                - 0.20 * Math.cos(toRad(4 * HavgP - 63));
+
+            const LavgSub50 = Lavg - 50;
+            const LavgSub50Sq = LavgSub50 * LavgSub50;
+            const SL = 1 + (0.015 * LavgSub50Sq) / Math.sqrt(20 + LavgSub50Sq);
+            const SC = 1 + 0.045 * CavgP;
+            const SH = 1 + 0.015 * CavgP * T;
+
+            const CavgPPow7 = Math.pow(CavgP, 7);
+            const HavgPSub275Div25 = (HavgP - 275) / 25;
+            const HavgPSub275Div25Sq = HavgPSub275Div25 * HavgPSub275Div25;
+            const RT = -2 * Math.sqrt(CavgPPow7 / (CavgPPow7 + VAL_25_POW_7))
+                * Math.sin(toRad(60 * Math.exp(-HavgPSub275Div25Sq)));
+
+            const dLpDivSL = dLp / SL;
+            const dCpDivSC = dCp / SC;
+            const dHpDivSH = dHp / SH;
+            const sq = dLpDivSL * dLpDivSL
+                + dCpDivSC * dCpDivSC
+                + dHpDivSH * dHpDivSH
+                + RT * dCpDivSC * dHpDivSH;
+            return Math.sqrt(sq);
+        }
+    }
+
+    class AvailableColor {
+        #index;
+        #hex;
+        #lab;
+
+        constructor(index, hex) {
+            this.#index = index;
+            this.#hex = hex;
+            this.#lab = SrgbColor.fromHex(hex).toLab();
+        }
+
+        get index() {
+            return this.#index;
+        }
+
+        get hexValue() {
+            return this.#hex;
+        }
+
+        get labValue() {
+            return this.#lab;
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const style = document.createElement("style");
+        style.innerHTML = ".nojs { display: none; }";
+        document.head.appendChild(style);
+
+        const inputElem = document.querySelector("#match input");
+        const indexElem = document.querySelector("#match .index");
+        const previewElem = document.querySelector("#match .preview");
+        const availableColors = Array.prototype.slice
+            .call(document.querySelectorAll("#main td:nth-child(even)"))
+            .map((row, i) => new AvailableColor(i, row.title));
+
+        function updateClosest() {
+            const targetColor = SrgbColor.fromHex(inputElem.value).toLab();
+            let minDistance = Infinity;
+            let closestColor = null;
+            for (const color of availableColors) {
+                const distance = targetColor.ciede2000(color.labValue);
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    closestColor = color;
+                }
+            }
+            indexElem.innerText = closestColor.index.toString();
+            previewElem.style.backgroundColor = closestColor.hexValue;
+            previewElem.title = closestColor.hexValue;
+        }
+
+        inputElem.addEventListener("change", updateClosest);
+        updateClosest();
+    });
+    // @license-end
+</script>
+<table id="main">
+<tbody>
+<tr><td>  0</td><td style="background-color: #616161" title="#616161"></td>
+    <td>  1</td><td style="background-color: #b3b3b3" title="#b3b3b3"></td>
+    <td>  2</td><td style="background-color: #dddddd" title="#dddddd"></td>
+    <td>  3</td><td style="background-color: #ffffff" title="#ffffff"></td></tr>
+<tr><td>  4</td><td style="background-color: #ffb3b3" title="#ffb3b3"></td>
+    <td>  5</td><td style="background-color: #ff6161" title="#ff6161"></td>
+    <td>  6</td><td style="background-color: #dd6161" title="#dd6161"></td>
+    <td>  7</td><td style="background-color: #b36161" title="#b36161"></td></tr>
+<tr><td>  8</td><td style="background-color: #fff3d5" title="#fff3d5"></td>
+    <td>  9</td><td style="background-color: #ffb361" title="#ffb361"></td>
+    <td> 10</td><td style="background-color: #dd8c61" title="#dd8c61"></td>
+    <td> 11</td><td style="background-color: #b37661" title="#b37661"></td></tr>
+<tr><td> 12</td><td style="background-color: #ffeea1" title="#ffeea1"></td>
+    <td> 13</td><td style="background-color: #ffff61" title="#ffff61"></td>
+    <td> 14</td><td style="background-color: #dddd61" title="#dddd61"></td>
+    <td> 15</td><td style="background-color: #b3b361" title="#b3b361"></td></tr>
+<tr><td> 16</td><td style="background-color: #ddffa1" title="#ddffa1"></td>
+    <td> 17</td><td style="background-color: #c2ff61" title="#c2ff61"></td>
+    <td> 18</td><td style="background-color: #a1dd61" title="#a1dd61"></td>
+    <td> 19</td><td style="background-color: #81b361" title="#81b361"></td></tr>
+<tr><td> 20</td><td style="background-color: #c2ffb3" title="#c2ffb3"></td>
+    <td> 21</td><td style="background-color: #61ff61" title="#61ff61"></td>
+    <td> 22</td><td style="background-color: #61dd61" title="#61dd61"></td>
+    <td> 23</td><td style="background-color: #61b361" title="#61b361"></td></tr>
+<tr><td> 24</td><td style="background-color: #c2ffc2" title="#c2ffc2"></td>
+    <td> 25</td><td style="background-color: #61ff8c" title="#61ff8c"></td>
+    <td> 26</td><td style="background-color: #61dd76" title="#61dd76"></td>
+    <td> 27</td><td style="background-color: #61b36b" title="#61b36b"></td></tr>
+<tr><td> 28</td><td style="background-color: #c2ffcc" title="#c2ffcc"></td>
+    <td> 29</td><td style="background-color: #61ffcc" title="#61ffcc"></td>
+    <td> 30</td><td style="background-color: #61dda1" title="#61dda1"></td>
+    <td> 31</td><td style="background-color: #61b381" title="#61b381"></td></tr>
+<tr><td> 32</td><td style="background-color: #c2fff3" title="#c2fff3"></td>
+    <td> 33</td><td style="background-color: #61ffe9" title="#61ffe9"></td>
+    <td> 34</td><td style="background-color: #61ddc2" title="#61ddc2"></td>
+    <td> 35</td><td style="background-color: #61b396" title="#61b396"></td></tr>
+<tr><td> 36</td><td style="background-color: #c2f3ff" title="#c2f3ff"></td>
+    <td> 37</td><td style="background-color: #61eeff" title="#61eeff"></td>
+    <td> 38</td><td style="background-color: #61c7dd" title="#61c7dd"></td>
+    <td> 39</td><td style="background-color: #61a1b3" title="#61a1b3"></td></tr>
+<tr><td> 40</td><td style="background-color: #c2ddff" title="#c2ddff"></td>
+    <td> 41</td><td style="background-color: #61c7ff" title="#61c7ff"></td>
+    <td> 42</td><td style="background-color: #61a1dd" title="#61a1dd"></td>
+    <td> 43</td><td style="background-color: #6181b3" title="#6181b3"></td></tr>
+<tr><td> 44</td><td style="background-color: #a18cff" title="#a18cff"></td>
+    <td> 45</td><td style="background-color: #6161ff" title="#6161ff"></td>
+    <td> 46</td><td style="background-color: #6161dd" title="#6161dd"></td>
+    <td> 47</td><td style="background-color: #6161b3" title="#6161b3"></td></tr>
+<tr><td> 48</td><td style="background-color: #ccb3ff" title="#ccb3ff"></td>
+    <td> 49</td><td style="background-color: #a161ff" title="#a161ff"></td>
+    <td> 50</td><td style="background-color: #8161dd" title="#8161dd"></td>
+    <td> 51</td><td style="background-color: #7661b3" title="#7661b3"></td></tr>
+<tr><td> 52</td><td style="background-color: #ffb3ff" title="#ffb3ff"></td>
+    <td> 53</td><td style="background-color: #ff61ff" title="#ff61ff"></td>
+    <td> 54</td><td style="background-color: #dd61dd" title="#dd61dd"></td>
+    <td> 55</td><td style="background-color: #b361b3" title="#b361b3"></td></tr>
+<tr><td> 56</td><td style="background-color: #ffb3d5" title="#ffb3d5"></td>
+    <td> 57</td><td style="background-color: #ff61c2" title="#ff61c2"></td>
+    <td> 58</td><td style="background-color: #dd61a1" title="#dd61a1"></td>
+    <td> 59</td><td style="background-color: #b3618c" title="#b3618c"></td></tr>
+<tr><td> 60</td><td style="background-color: #ff7661" title="#ff7661"></td>
+    <td> 61</td><td style="background-color: #e9b361" title="#e9b361"></td>
+    <td> 62</td><td style="background-color: #ddc261" title="#ddc261"></td>
+    <td> 63</td><td style="background-color: #a1a161" title="#a1a161"></td></tr>
+<tr><td> 64</td><td style="background-color: #61b361" title="#61b361"></td>
+    <td> 65</td><td style="background-color: #61b38c" title="#61b38c"></td>
+    <td> 66</td><td style="background-color: #618cd5" title="#618cd5"></td>
+    <td> 67</td><td style="background-color: #6161ff" title="#6161ff"></td></tr>
+<tr><td> 68</td><td style="background-color: #61b3b3" title="#61b3b3"></td>
+    <td> 69</td><td style="background-color: #8c61f3" title="#8c61f3"></td>
+    <td> 70</td><td style="background-color: #ccb3c2" title="#ccb3c2"></td>
+    <td> 71</td><td style="background-color: #8c7681" title="#8c7681"></td></tr>
+<tr><td> 72</td><td style="background-color: #ff6161" title="#ff6161"></td>
+    <td> 73</td><td style="background-color: #f3ffa1" title="#f3ffa1"></td>
+    <td> 74</td><td style="background-color: #eefc61" title="#eefc61"></td>
+    <td> 75</td><td style="background-color: #ccff61" title="#ccff61"></td></tr>
+<tr><td> 76</td><td style="background-color: #76dd61" title="#76dd61"></td>
+    <td> 77</td><td style="background-color: #61ffcc" title="#61ffcc"></td>
+    <td> 78</td><td style="background-color: #61e9ff" title="#61e9ff"></td>
+    <td> 79</td><td style="background-color: #61a1ff" title="#61a1ff"></td></tr>
+<tr><td> 80</td><td style="background-color: #8c61ff" title="#8c61ff"></td>
+    <td> 81</td><td style="background-color: #cc61fc" title="#cc61fc"></td>
+    <td> 82</td><td style="background-color: #ee8cdd" title="#ee8cdd"></td>
+    <td> 83</td><td style="background-color: #a17661" title="#a17661"></td></tr>
+<tr><td> 84</td><td style="background-color: #ffa161" title="#ffa161"></td>
+    <td> 85</td><td style="background-color: #ddf961" title="#ddf961"></td>
+    <td> 86</td><td style="background-color: #d5ff8c" title="#d5ff8c"></td>
+    <td> 87</td><td style="background-color: #61ff61" title="#61ff61"></td></tr>
+<tr><td> 88</td><td style="background-color: #b3ffa1" title="#b3ffa1"></td>
+    <td> 89</td><td style="background-color: #ccfcd5" title="#ccfcd5"></td>
+    <td> 90</td><td style="background-color: #b3fff6" title="#b3fff6"></td>
+    <td> 91</td><td style="background-color: #cce4ff" title="#cce4ff"></td></tr>
+<tr><td> 92</td><td style="background-color: #a1c2f6" title="#a1c2f6"></td>
+    <td> 93</td><td style="background-color: #d5c2f9" title="#d5c2f9"></td>
+    <td> 94</td><td style="background-color: #f98cff" title="#f98cff"></td>
+    <td> 95</td><td style="background-color: #ff61cc" title="#ff61cc"></td></tr>
+<tr><td> 96</td><td style="background-color: #ffc261" title="#ffc261"></td>
+    <td> 97</td><td style="background-color: #f3ee61" title="#f3ee61"></td>
+    <td> 98</td><td style="background-color: #e4ff61" title="#e4ff61"></td>
+    <td> 99</td><td style="background-color: #ddcc61" title="#ddcc61"></td></tr>
+<tr><td>100</td><td style="background-color: #b3a161" title="#b3a161"></td>
+    <td>101</td><td style="background-color: #61ba76" title="#61ba76"></td>
+    <td>102</td><td style="background-color: #76c28c" title="#76c28c"></td>
+    <td>103</td><td style="background-color: #8181a1" title="#8181a1"></td></tr>
+<tr><td>104</td><td style="background-color: #818ccc" title="#818ccc"></td>
+    <td>105</td><td style="background-color: #ccaa81" title="#ccaa81"></td>
+    <td>106</td><td style="background-color: #dd6161" title="#dd6161"></td>
+    <td>107</td><td style="background-color: #f9b3a1" title="#f9b3a1"></td></tr>
+<tr><td>108</td><td style="background-color: #f9ba76" title="#f9ba76"></td>
+    <td>109</td><td style="background-color: #fff38c" title="#fff38c"></td>
+    <td>110</td><td style="background-color: #e9f9a1" title="#e9f9a1"></td>
+    <td>111</td><td style="background-color: #d5ee76" title="#d5ee76"></td></tr>
+<tr><td>112</td><td style="background-color: #8181a1" title="#8181a1"></td>
+    <td>113</td><td style="background-color: #f9f9d5" title="#f9f9d5"></td>
+    <td>114</td><td style="background-color: #ddfce4" title="#ddfce4"></td>
+    <td>115</td><td style="background-color: #e9e9ff" title="#e9e9ff"></td></tr>
+<tr><td>116</td><td style="background-color: #e4d5ff" title="#e4d5ff"></td>
+    <td>117</td><td style="background-color: #b3b3b3" title="#b3b3b3"></td>
+    <td>118</td><td style="background-color: #d5d5d5" title="#d5d5d5"></td>
+    <td>119</td><td style="background-color: #f9ffff" title="#f9ffff"></td></tr>
+<tr><td>120</td><td style="background-color: #e96161" title="#e96161"></td>
+    <td>121</td><td style="background-color: #aa6161" title="#aa6161"></td>
+    <td>122</td><td style="background-color: #81f661" title="#81f661"></td>
+    <td>123</td><td style="background-color: #61b361" title="#61b361"></td></tr>
+<tr><td>124</td><td style="background-color: #f3ee61" title="#f3ee61"></td>
+    <td>125</td><td style="background-color: #b3a161" title="#b3a161"></td>
+    <td>126</td><td style="background-color: #eec261" title="#eec261"></td>
+    <td>127</td><td style="background-color: #c27661" title="#c27661"></td></tr>
+</tbody>
+</table>
+<div id="match">
+    <div class="select">
+        <span>Select a color<span class="nojs"> (requires JavaScript)</span>:
+        </span><input type="color" value="#62a0ea" />
+    </div>
+    <div class="closest">
+        <span>Closest available color:
+        </span><table><tbody><tr>
+            <td class="index">42</td>
+            <td class="preview"
+                style="background-color: #61a1dd"
+                title="#61a1dd"></td>
+        </tr></tbody></table>
+    </div>
+</div>
