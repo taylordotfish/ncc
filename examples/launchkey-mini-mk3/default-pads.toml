@@ -1,0 +1,68 @@
+version = 2
+device = "launchkey-mini-mk3-pads"
+name = "Default"
+active-color = 21
+
+[pads.1]
+color = 94
+note = "C4"
+
+[pads.2]
+color = 36
+note = "D4"
+
+[pads.3]
+color = 36
+note = "Eb4"
+
+[pads.4]
+color = 36
+note = "F4"
+
+[pads.5]
+color = 36
+note = "G4"
+
+[pads.6]
+color = 36
+note = "Ab4"
+
+[pads.7]
+color = 36
+note = "Bb4"
+
+[pads.8]
+color = 94
+note = "C5"
+
+[pads.9]
+color = 94
+note = "C3"
+
+[pads.10]
+color = 36
+note = "D3"
+
+[pads.11]
+color = 36
+note = "Eb3"
+
+[pads.12]
+color = 36
+note = "F3"
+
+[pads.13]
+color = 36
+note = "G3"
+
+[pads.14]
+color = 36
+note = "Ab3"
+
+[pads.15]
+color = 36
+note = "Bb3"
+
+[pads.16]
+color = 94
+note = "C4"

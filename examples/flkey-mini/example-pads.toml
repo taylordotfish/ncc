@@ -1,0 +1,117 @@
+version = 2
+device = "flkey-mini-pads"
+name = "My Custom Mode"
+
+# The color of the pads when pressed or toggled. Colors are numbers from 0-127;
+# see doc/colors.html for a list.
+active-color = 52
+
+# Pad 1 (upper left) will be yellow (color 13; see colors.html) and will play
+# MIDI note 60 (middle C) when pressed. No MIDI channel is specified so the
+# note will play on the global device channel.
+[pads.1]
+color = 13
+note = 60
+
+# Pad 2 (right of pad 1) will play Db4. When notes are specified with names, C4
+# is treated as middle C, so this pad will play MIDI note 61.
+[pads.2]
+color = 12
+note = "Db4"
+
+# Pad 3 plays Eb4, but always on channel 16.
+[pads.3]
+color = 8
+[pads.3.note]
+pitch = "Eb4"
+channel = 16
+
+# Pad 4 will always play with maximum velocity (127).
+[pads.4]
+color = 61
+[pads.4.note]
+pitch = "F4"
+velocity = 127
+
+# Because the behavior is "toggle", the note won't stop playing when pad 5 is
+# released. A second press turns the note off.
+[pads.5]
+color = 98
+[pads.5.note]
+pitch = "G4"
+behavior = "toggle"
+
+# Pad 6 toggles Ab4 on and off, always with velocity 50 on channel 1.
+[pads.6]
+color = 16
+[pads.6.note]
+pitch = "Ab4"
+behavior = "toggle"
+channel = 1
+velocity = 50
+
+[pads.7]
+color = 34
+note = "Bb4"
+
+# (Upper right)
+[pads.8]
+color = 26
+note = "C5"
+
+# Pad 9 (bottom left) will set MIDI CC 29 to 127 (maximum CC value) when
+# pressed and 0 when released. The messages are sent on the current global
+# device channel.
+[pads.9]
+color = 35
+cc = 29
+
+# Pad 10 sets MIDI CC 30 to 20 when pressed and 90 when released, always on
+# channel 7.
+[pads.10]
+color = 29
+[pads.10.cc]
+number = 30
+channel = 7
+off = 90
+on = 20
+
+# When pressed and released once, pad 11 sets MIDI CC 31 to 75. When pressed
+# again, CC 31 is set to 25.
+[pads.11]
+color = 32
+[pads.11.cc]
+number = 31
+behavior = "toggle"
+off = 25
+on = 75
+
+# Pad 12 sends a MIDI Program Change message with program number 15.
+[pads.12]
+color = 38
+prog = 15
+
+# Pad 13 sends a MIDI Program Change message with program number 16, always on
+# channel 2.
+[pads.13]
+color = 47
+[pads.13.prog]
+number = 16
+channel = 2
+
+[pads.14]
+color = 48
+note = "C2"
+
+[pads.15]
+color = 116
+note = "C3"
+
+# (Bottom right)
+[pads.16]
+color = 54
+[pads.16.cc]
+number = 120
+off = 0
+on = 0
+behavior = "toggle"

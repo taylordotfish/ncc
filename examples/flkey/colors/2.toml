@@ -1,0 +1,68 @@
+version = 2
+device = "flkey-pads"
+name = "Colors 16-31"
+active-color = 0
+
+[pads.1]
+color = 16
+note = 16
+
+[pads.2]
+color = 17
+note = 17
+
+[pads.3]
+color = 18
+note = 18
+
+[pads.4]
+color = 19
+note = 19
+
+[pads.5]
+color = 20
+note = 20
+
+[pads.6]
+color = 21
+note = 21
+
+[pads.7]
+color = 22
+note = 22
+
+[pads.8]
+color = 23
+note = 23
+
+[pads.9]
+color = 24
+note = 24
+
+[pads.10]
+color = 25
+note = 25
+
+[pads.11]
+color = 26
+note = 26
+
+[pads.12]
+color = 27
+note = 27
+
+[pads.13]
+color = 28
+note = 28
+
+[pads.14]
+color = 29
+note = 29
+
+[pads.15]
+color = 30
+note = 30
+
+[pads.16]
+color = 31
+note = 31

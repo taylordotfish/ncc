@@ -1,0 +1,68 @@
+version = 2
+device = "launchkey-mk3-pads"
+name = "Default"
+active-color = 26
+
+[pads.1]
+color = 47
+cc = 44
+
+[pads.2]
+color = 47
+cc = 45
+
+[pads.3]
+color = 47
+cc = 46
+
+[pads.4]
+color = 47
+cc = 47
+
+[pads.5]
+color = 47
+cc = 48
+
+[pads.6]
+color = 47
+cc = 49
+
+[pads.7]
+color = 47
+cc = 50
+
+[pads.8]
+color = 47
+cc = 51
+
+[pads.9]
+color = 35
+cc = 36
+
+[pads.10]
+color = 35
+cc = 37
+
+[pads.11]
+color = 35
+cc = 38
+
+[pads.12]
+color = 35
+cc = 39
+
+[pads.13]
+color = 35
+cc = 40
+
+[pads.14]
+color = 35
+cc = 41
+
+[pads.15]
+color = 35
+cc = 42
+
+[pads.16]
+color = 35
+cc = 43

@@ -1,0 +1,84 @@
+version = 2
+device = "launchpad-mini-mk3"
+name = "Blank"
+active-color = 21
+
+# Row 1
+[pads.1]
+[pads.2]
+[pads.3]
+[pads.4]
+[pads.5]
+[pads.6]
+[pads.7]
+[pads.8]
+
+# Row 2
+[pads.9]
+[pads.10]
+[pads.11]
+[pads.12]
+[pads.13]
+[pads.14]
+[pads.15]
+[pads.16]
+
+# Row 3
+[pads.17]
+[pads.18]
+[pads.19]
+[pads.20]
+[pads.21]
+[pads.22]
+[pads.23]
+[pads.24]
+
+# Row 4
+[pads.25]
+[pads.26]
+[pads.27]
+[pads.28]
+[pads.29]
+[pads.30]
+[pads.31]
+[pads.32]
+
+# Row 5
+[pads.33]
+[pads.34]
+[pads.35]
+[pads.36]
+[pads.37]
+[pads.38]
+[pads.39]
+[pads.40]
+
+# Row 6
+[pads.41]
+[pads.42]
+[pads.43]
+[pads.44]
+[pads.45]
+[pads.46]
+[pads.47]
+[pads.48]
+
+# Row 7
+[pads.49]
+[pads.50]
+[pads.51]
+[pads.52]
+[pads.53]
+[pads.54]
+[pads.55]
+[pads.56]
+
+# Row 8
+[pads.57]
+[pads.58]
+[pads.59]
+[pads.60]
+[pads.61]
+[pads.62]
+[pads.63]
+[pads.64]

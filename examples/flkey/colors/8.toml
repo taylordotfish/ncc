@@ -1,0 +1,68 @@
+version = 2
+device = "flkey-pads"
+name = "Colors 112-127"
+active-color = 0
+
+[pads.1]
+color = 112
+note = 112
+
+[pads.2]
+color = 113
+note = 113
+
+[pads.3]
+color = 114
+note = 114
+
+[pads.4]
+color = 115
+note = 115
+
+[pads.5]
+color = 116
+note = 116
+
+[pads.6]
+color = 117
+note = 117
+
+[pads.7]
+color = 118
+note = 118
+
+[pads.8]
+color = 119
+note = 119
+
+[pads.9]
+color = 120
+note = 120
+
+[pads.10]
+color = 121
+note = 121
+
+[pads.11]
+color = 122
+note = 122
+
+[pads.12]
+color = 123
+note = 123
+
+[pads.13]
+color = 124
+note = 124
+
+[pads.14]
+color = 125
+note = 125
+
+[pads.15]
+color = 126
+note = 126
+
+[pads.16]
+color = 127
+note = 127

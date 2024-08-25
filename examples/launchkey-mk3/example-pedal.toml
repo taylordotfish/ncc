@@ -1,0 +1,5 @@
+version = 2
+device = "launchkey-mk3-pedal"
+
+# Map the sustain pedal to MIDI CC 80.
+cc = 80

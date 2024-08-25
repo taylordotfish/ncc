@@ -1,0 +1,260 @@
+version = 2
+device = "launchpad-mini-mk3"
+name = "Colors 0-63"
+active-color = 0
+
+[pads.1]
+color = 0
+note = 0
+
+[pads.2]
+color = 1
+note = 1
+
+[pads.3]
+color = 2
+note = 2
+
+[pads.4]
+color = 3
+note = 3
+
+[pads.5]
+color = 4
+note = 4
+
+[pads.6]
+color = 5
+note = 5
+
+[pads.7]
+color = 6
+note = 6
+
+[pads.8]
+color = 7
+note = 7
+
+[pads.9]
+color = 8
+note = 8
+
+[pads.10]
+color = 9
+note = 9
+
+[pads.11]
+color = 10
+note = 10
+
+[pads.12]
+color = 11
+note = 11
+
+[pads.13]
+color = 12
+note = 12
+
+[pads.14]
+color = 13
+note = 13
+
+[pads.15]
+color = 14
+note = 14
+
+[pads.16]
+color = 15
+note = 15
+
+[pads.17]
+color = 16
+note = 16
+
+[pads.18]
+color = 17
+note = 17
+
+[pads.19]
+color = 18
+note = 18
+
+[pads.20]
+color = 19
+note = 19
+
+[pads.21]
+color = 20
+note = 20
+
+[pads.22]
+color = 21
+note = 21
+
+[pads.23]
+color = 22
+note = 22
+
+[pads.24]
+color = 23
+note = 23
+
+[pads.25]
+color = 24
+note = 24
+
+[pads.26]
+color = 25
+note = 25
+
+[pads.27]
+color = 26
+note = 26
+
+[pads.28]
+color = 27
+note = 27
+
+[pads.29]
+color = 28
+note = 28
+
+[pads.30]
+color = 29
+note = 29
+
+[pads.31]
+color = 30
+note = 30
+
+[pads.32]
+color = 31
+note = 31
+
+[pads.33]
+color = 32
+note = 32
+
+[pads.34]
+color = 33
+note = 33
+
+[pads.35]
+color = 34
+note = 34
+
+[pads.36]
+color = 35
+note = 35
+
+[pads.37]
+color = 36
+note = 36
+
+[pads.38]
+color = 37
+note = 37
+
+[pads.39]
+color = 38
+note = 38
+
+[pads.40]
+color = 39
+note = 39
+
+[pads.41]
+color = 40
+note = 40
+
+[pads.42]
+color = 41
+note = 41
+
+[pads.43]
+color = 42
+note = 42
+
+[pads.44]
+color = 43
+note = 43
+
+[pads.45]
+color = 44
+note = 44
+
+[pads.46]
+color = 45
+note = 45
+
+[pads.47]
+color = 46
+note = 46
+
+[pads.48]
+color = 47
+note = 47
+
+[pads.49]
+color = 48
+note = 48
+
+[pads.50]
+color = 49
+note = 49
+
+[pads.51]
+color = 50
+note = 50
+
+[pads.52]
+color = 51
+note = 51
+
+[pads.53]
+color = 52
+note = 52
+
+[pads.54]
+color = 53
+note = 53
+
+[pads.55]
+color = 54
+note = 54
+
+[pads.56]
+color = 55
+note = 55
+
+[pads.57]
+color = 56
+note = 56
+
+[pads.58]
+color = 57
+note = 57
+
+[pads.59]
+color = 58
+note = 58
+
+[pads.60]
+color = 59
+note = 59
+
+[pads.61]
+color = 60
+note = 60
+
+[pads.62]
+color = 61
+note = 61
+
+[pads.63]
+color = 62
+note = 62
+
+[pads.64]
+color = 63
+note = 63

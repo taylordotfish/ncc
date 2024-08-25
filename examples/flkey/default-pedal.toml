@@ -1,0 +1,3 @@
+version = 2
+device = "flkey-pedal"
+cc = 64

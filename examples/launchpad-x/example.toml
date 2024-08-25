@@ -1,0 +1,222 @@
+version = 2
+device = "launchpad-x"
+name = "My Custom Mode"
+
+# The color of the pads when pressed or toggled. Colors are numbers from 0-127;
+# see doc/colors.html for a list.
+active-color = 56
+
+# Enable octave transposition and disable semitone transposition.
+# These lines are optional; if omitted, the default for both is `true`.
+octave-transposition = true
+semitone-transposition = false
+
+# Pad 1 (upper left) will be red (color 5; see colors.html) and will play MIDI
+# note 60 (middle C) when pressed. No MIDI channel is specified so the note
+# will play on the global device channel.
+[pads.1]
+color = 5
+note = 60
+
+# Pad 2 (right of pad 1) will play Db4. When notes are specified with names, C4
+# is treated as middle C, so this pad will play MIDI note 61.
+[pads.2]
+color = 4
+note = "Db4"
+
+# Pad 3 plays Eb4, but always on channel 16.
+[pads.3]
+color = 84
+[pads.3.note]
+pitch = "Eb4"
+channel = 16
+
+# Because the behavior is "toggle", the note won't stop playing when pad 4 is
+# released. A second press turns the note off.
+[pads.4]
+color = 108
+[pads.4.note]
+pitch = "F4"
+behavior = "toggle"
+
+# Pad 5 toggles G4 on and off, always on channel 1.
+[pads.5]
+color = 61
+[pads.5.note]
+pitch = "G4"
+behavior = "toggle"
+channel = 1
+
+[pads.6]
+color = 8
+note = "Ab4"
+
+[pads.7]
+color = 12
+note = "Bb4"
+
+[pads.8]
+color = 13
+note = "C5"
+
+# Pad 9 (leftmost pad in second row, below pad 1) will set MIDI CC 29 to 127
+# (maximum CC value) when pressed and 0 when released. The messages are sent on
+# the current global device channel.
+[pads.9]
+color = 98
+cc = 29
+
+# Pad 10 sets MIDI CC 30 to 20 when pressed and 90 when released, always on
+# channel 7.
+[pads.10]
+color = 16
+[pads.10.cc]
+number = 30
+off = 90
+on = 20
+channel = 7
+
+# When pressed and released once, pad 11 sets MIDI CC 31 to 75. When pressed
+# again, CC 31 is set to 25.
+[pads.11]
+color = 88
+[pads.11.cc]
+number = 31
+behavior = "toggle"
+off = 25
+on = 75
+
+# Because the on and off values are the same and the behavior is "toggle", pad
+# 12 acts as a trigger: pressing and releasing the pad always sends a MIDI
+# message setting CC 120 to 0 (in this case, this is the MIDI "All Sound Off"
+# message).
+[pads.12]
+color = 21
+[pads.12.cc]
+number = 120
+off = 0
+on = 0
+behavior = "toggle"
+
+# Pad 13 sends a MIDI Program Change message with program number 15.
+[pads.13]
+color = 114
+prog = 15
+
+# Pad 14 sends a MIDI Program Change message with program number 16, always on
+# channel 2.
+[pads.14]
+color = 29
+[pads.14.prog]
+number = 16
+channel = 2
+
+# Pad 17 (below pad 9) simulates a press of the spacebar on a computer
+# keyboard. Keys are specified with USB HID keycodes (keyboard usage codes);
+# see doc/keycodes.md for a list. 0x2c is the code for the spacebar.
+[pads.17]
+color = 32
+keypress = 0x2c
+
+# Pad 18 sends Ctrl+Alt+Delete (0x4c is the USB keycode for the Delete key).
+[pads.18]
+color = 36
+[pads.18.keypress]
+keycode = 0x4c
+ctrl = true
+alt = true
+
+# Pad 19 sends Shift+A.
+[pads.19]
+color = 40
+[pads.19.keypress]
+keycode = 4
+shift = true
+
+[pads.26]
+color = 45
+note = "C#2"
+
+[pads.27]
+color = 48
+note = "D#2"
+
+[pads.28]
+color = 116
+note = "F#2"
+
+[pads.30]
+color = 94
+note = "G#2"
+
+[pads.31]
+color = 52
+note = "A#2"
+
+# (Leftmost pad in row 5)
+[pads.33]
+color = 45
+note = "C2"
+
+[pads.34]
+color = 48
+note = "D2"
+
+[pads.35]
+color = 49
+note = "E2"
+
+[pads.36]
+color = 116
+note = "F2"
+
+[pads.37]
+color = 94
+note = "G2"
+
+[pads.38]
+color = 52
+note = "A2"
+
+[pads.39]
+color = 95
+note = "B2"
+
+[pads.40]
+color = 3
+note = "C3"
+
+# Row 6 (pads 41 to 48) will act as a single fader for MIDI CC 100 on channel
+# 3. If the orientation were "vertical", this would affect the pads in column 6
+# instead, but that would conflict with pads defined above.
+[faders.6]
+orientation = "horizontal"
+color = 98
+cc = 100
+channel = 3
+
+# Row 7 (pads 49 to 56) will act as a fader for CC 101, but with a different
+# pattern of lights. For bipolar faders, the illumination starts at the center
+# of the row or column and progresses left or right, depending on whether the
+# value is below or above the middle of the CC value range.
+[faders.7]
+orientation = "horizontal"
+color = 45
+mode = "bipolar"
+cc = 101
+
+[pads.63]
+color = 1
+[pads.63.note]
+pitch = "E0"
+channel = 5
+
+# (Bottom right)
+[pads.64]
+color = 0
+[pads.64.cc]
+number = 110
+channel = 5
+behavior = "toggle"
+off = 127
+on = 0
