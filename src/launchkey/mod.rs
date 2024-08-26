@@ -118,9 +118,8 @@ pub mod launchkey_mk3 {
     use crate::controls::pot::PickupCfg;
 
     const DEVICE_ID: u8 = 0x0f;
-
-    pub(super) const PAD_CONFIG: PadMapCfg = PadMapCfg::new().keypress(true);
-    pub(super) const POT_CONFIG: PotMapCfg =
+    const PAD_CONFIG: PadMapCfg = PadMapCfg::new().keypress(true);
+    const POT_CONFIG: PotMapCfg =
         PotMapCfg::new().pickup(PickupCfg::GlobalAllowed);
 
     define_device_maps!(PadMap, PotMap, PedalMap, FaderMap);
@@ -131,26 +130,33 @@ pub mod launchkey_mini_mk3 {
     use crate::controls::pot::PickupCfg;
 
     const DEVICE_ID: u8 = 0x0b;
-
-    pub(super) const PAD_CONFIG: PadMapCfg = PadMapCfg::new().keypress(false);
-    pub(super) const POT_CONFIG: PotMapCfg =
+    const PAD_CONFIG: PadMapCfg = PadMapCfg::new().keypress(false);
+    const POT_CONFIG: PotMapCfg =
         PotMapCfg::new().pickup(PickupCfg::BinaryOnly);
 
     define_device_maps!(PadMap, PotMap, PedalMap);
 }
 
 pub mod flkey {
-    use super::launchkey_mk3::{PAD_CONFIG, POT_CONFIG};
+    use super::common::{PadMapCfg, PotMapCfg};
+    use crate::controls::pot::PickupCfg;
 
     const DEVICE_ID: u8 = 0x11;
+    const PAD_CONFIG: PadMapCfg = PadMapCfg::new().keypress(true);
+    const POT_CONFIG: PotMapCfg =
+        PotMapCfg::new().pickup(PickupCfg::GlobalAllowed);
 
     define_device_maps!(PadMap, PotMap, PedalMap, FaderMap);
 }
 
 pub mod flkey_mini {
-    use super::launchkey_mini_mk3::{PAD_CONFIG, POT_CONFIG};
+    use super::common::{PadMapCfg, PotMapCfg};
+    use crate::controls::pot::PickupCfg;
 
     const DEVICE_ID: u8 = 0x10;
+    const PAD_CONFIG: PadMapCfg = PadMapCfg::new().keypress(false);
+    const POT_CONFIG: PotMapCfg =
+        PotMapCfg::new().pickup(PickupCfg::GlobalAllowed);
 
     define_device_maps!(PadMap, PotMap, PedalMap);
 }

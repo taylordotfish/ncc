@@ -43,7 +43,7 @@ example-pads.toml  example-pads.syx
 See the [examples] directory for a demonstration of how to write custom modes
 for ncc.
 
-[examples]: https://github.com/taylordotfish/ncc/tree/0.1.0/examples/
+[examples]: https://github.com/taylordotfish/ncc/tree/0.1.1/examples/
 
 Installing custom modes
 -----------------------
@@ -53,4 +53,4 @@ sent to the device as MIDI (and the response from the device must be read). The
 way to do this depends on your operating system. [A guide is available][alsa]
 for GNU/Linux systems using ALSA.
 
-[alsa]: https://github.com/taylordotfish/ncc/blob/0.1.0/doc/alsa.md
+[alsa]: https://github.com/taylordotfish/ncc/blob/0.1.1/doc/alsa.md

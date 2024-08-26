@@ -25,13 +25,17 @@ use std::io::{self, Write};
 use std::process::{Command, Stdio};
 
 macro_rules! define_tests {
-    ($($func:ident($path:literal, $hash:literal $(,)?)),* $(,)?) => {
+    (
+        toml = $toml_prefix:literal,
+        syx = $syx_prefix:literal,
+        $($func:ident($path:literal, $hash:literal $(,)?)),* $(,)?
+    ) => {
         $(#[test]
         fn $func() {
             TestCase {
                 name: $path,
-                toml: include_bytes!(concat!("../examples/", $path, ".toml")),
-                syx: include_bytes!(concat!("syx-data/", $path, ".syx")),
+                toml: include_bytes!(concat!($toml_prefix, $path, ".toml")),
+                syx: include_bytes!(concat!($syx_prefix, $path, ".syx")),
                 toml_hash: hex_literal::hex!($hash),
             }
             .assert();
@@ -40,6 +44,8 @@ macro_rules! define_tests {
 }
 
 define_tests! {
+    toml = "../examples/",
+    syx = "syx-data/",
     flkey_example_pedal(
         "flkey/example-pedal",
         "4117c4e61f5a096a1e8183bba4082c0ef460a9020377b3ff9c828a0c24d6fd91",
