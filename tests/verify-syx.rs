@@ -60,7 +60,7 @@ define_tests! {
     ),
     flkey_default_pads(
         "flkey/default-pads",
-        "4dd2c3ce8bd4a7bd15d50db0a7832fc0f95d787450167c21e586e4439ed32aa7",
+        "ff9982320968198862bb0683d5dc6d3936fea5e7a464df73d452845dabff3807",
     ),
     flkey_default_faders(
         "flkey/default-faders",
@@ -124,7 +124,7 @@ define_tests! {
     ),
     flkey_mini_default_pads(
         "flkey-mini/default-pads",
-        "248445b324d118eeb213e06bf2b3ca4e2b31b9af0d5977498ee557b5fe2fa0cc",
+        "fe81ed669b4168b55d12ffa9e5fc7ef7032eedebaf84dfffb2f93ec165c8c813",
     ),
     flkey_mini_colors_4(
         "flkey-mini/colors/4",
@@ -196,11 +196,11 @@ define_tests! {
     ),
     launchkey_mk3_default_pads(
         "launchkey-mk3/default-pads",
-        "a9746ffb93f1a8df6b5fec540d2865b959ec2eb22e377b5bea3df9acc2c68f65",
+        "3884aa19a661e6ce95a5992b76f89462dbb2b99b37bdf24fe02af12bf335aaff",
     ),
     launchkey_mk3_default_faders(
         "launchkey-mk3/default-faders",
-        "bc5806e039cff886b863318c306c62dd38a9c93ad71ea024f6da7e76c6d147be",
+        "7f8548724d502046b4f5e663033354e0348a4f15c439e81d8d798b7f2261ad2c",
     ),
     launchkey_mk3_colors_4(
         "launchkey-mk3/colors/4",

@@ -4,65 +4,65 @@ name = "Default"
 active-color = 26
 
 [pads.1]
-color = 47
-cc = 44
+color = 54
+note = "C4"
 
 [pads.2]
-color = 47
-cc = 45
+color = 38
+note = "D4"
 
 [pads.3]
-color = 47
-cc = 46
+color = 38
+note = "Eb4"
 
 [pads.4]
-color = 47
-cc = 47
+color = 38
+note = "F4"
 
 [pads.5]
-color = 47
-cc = 48
+color = 38
+note = "G4"
 
 [pads.6]
-color = 47
-cc = 49
+color = 38
+note = "Ab4"
 
 [pads.7]
-color = 47
-cc = 50
+color = 38
+note = "Bb4"
 
 [pads.8]
-color = 47
-cc = 51
+color = 54
+note = "C5"
 
 [pads.9]
-color = 35
-cc = 36
+color = 54
+note = "C3"
 
 [pads.10]
-color = 35
-cc = 37
+color = 38
+note = "D3"
 
 [pads.11]
-color = 35
-cc = 38
+color = 38
+note = "Eb3"
 
 [pads.12]
-color = 35
-cc = 39
+color = 38
+note = "F3"
 
 [pads.13]
-color = 35
-cc = 40
+color = 38
+note = "G3"
 
 [pads.14]
-color = 35
-cc = 41
+color = 38
+note = "Ab3"
 
 [pads.15]
-color = 35
-cc = 42
+color = 38
+note = "Bb3"
 
 [pads.16]
-color = 35
-cc = 43
+color = 54
+note = "C4"

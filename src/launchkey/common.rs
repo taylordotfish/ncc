@@ -90,7 +90,7 @@ impl StandardParams {
 pub struct PadMap {
     name: Name,
     active_color: MidiValue,
-    pads: [Pad; Self::NUM_PADS],
+    pads: [Optional<Pad>; Self::NUM_PADS],
 }
 
 impl PadMap {
@@ -195,10 +195,10 @@ impl<'a> DeserializeConfig<'a, PadMapCfg> for PadMap {
                 }
                 let missing = de::Error::missing_field;
                 Ok(PadMap {
-                    name: name.ok_or_else(|| missing("name"))?,
+                    name: name.unwrap_or_else(Name::empty),
                     active_color: active_color
                         .ok_or_else(|| missing("active-color"))?,
-                    pads: pads.ok_or_else(|| missing("pads"))?,
+                    pads: pads.unwrap_or([Optional::None; PadMap::NUM_PADS]),
                 })
             }
         }
@@ -311,7 +311,7 @@ impl<'a> DeserializeConfig<'a, PotMapCfg> for PotMap {
                 }
                 let missing = de::Error::missing_field;
                 Ok(PotMap {
-                    name: name.ok_or_else(|| missing("name"))?,
+                    name: name.unwrap_or_else(Name::empty),
                     pots: pots.ok_or_else(|| missing("pots"))?,
                 })
             }
@@ -479,7 +479,7 @@ impl<'a> Deserialize<'a> for FaderMap {
                 }
                 let missing = de::Error::missing_field;
                 Ok(FaderMap {
-                    name: name.ok_or_else(|| missing("name"))?,
+                    name: name.unwrap_or_else(Name::empty),
                     active_color: active_color
                         .ok_or_else(|| missing("active-color"))?,
                     faders: faders.unwrap_or_default(),

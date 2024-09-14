@@ -31,35 +31,35 @@ cc = 78
 cc = 79
 
 [buttons.1]
-color = 36
+color = 38
 cc = 11
 
 [buttons.2]
-color = 36
+color = 38
 cc = 12
 
 [buttons.3]
-color = 36
+color = 38
 cc = 13
 
 [buttons.4]
-color = 36
+color = 38
 cc = 14
 
 [buttons.5]
-color = 36
+color = 38
 cc = 15
 
 [buttons.6]
-color = 36
+color = 38
 cc = 16
 
 [buttons.7]
-color = 36
+color = 38
 cc = 17
 
 [buttons.8]
-color = 36
+color = 38
 cc = 18
 
 [buttons.9]

@@ -324,7 +324,7 @@ impl<'a> Deserialize<'a> for Map {
                 }
                 let missing = de::Error::missing_field;
                 Ok(Map {
-                    name: name.ok_or_else(|| missing("name"))?,
+                    name: name.unwrap_or_else(Name::empty),
                     active_color: active_color
                         .ok_or_else(|| missing("active-color"))?,
                     pads: pads.unwrap_or([Optional::None; Map::NUM_PADS]),
