@@ -121,7 +121,7 @@ impl Args {
     where
         A: IntoIterator<Item = OsString>,
     {
-        ArgsState {
+        Parser {
             args: args.into_iter(),
             options_done: false,
             num_positional: 0,
@@ -193,7 +193,7 @@ enum NextShort {
     SkipRest,
 }
 
-struct ArgsState<A> {
+struct Parser<A> {
     args: A,
     options_done: bool,
     num_positional: usize,
@@ -201,7 +201,7 @@ struct ArgsState<A> {
     out_path: Option<PathArg>,
 }
 
-impl<A: Iterator<Item = OsString>> ArgsState<A> {
+impl<A: Iterator<Item = OsString>> Parser<A> {
     fn parse(mut self) -> ArgsResult {
         let mut any = false;
         while let Some(arg) = self.args.next() {

@@ -66,7 +66,7 @@ impl Args {
     where
         A: IntoIterator<Item = OsString>,
     {
-        ArgsState {
+        Parser {
             args: args.into_iter(),
             options_done: false,
             num_positional: 0,
@@ -118,7 +118,7 @@ impl<C> From<ArgsError> for ControlFlow<ArgsResult, C> {
     }
 }
 
-struct ArgsState<A> {
+struct Parser<A> {
     args: A,
     options_done: bool,
     num_positional: usize,
@@ -126,7 +126,7 @@ struct ArgsState<A> {
     file: Option<OsString>,
 }
 
-impl<A: Iterator<Item = OsString>> ArgsState<A> {
+impl<A: Iterator<Item = OsString>> Parser<A> {
     fn parse(mut self) -> ArgsResult {
         let mut any = false;
         while let Some(arg) = self.args.next() {
