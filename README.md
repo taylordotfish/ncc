@@ -59,12 +59,12 @@ Download the source code:
 
 ```bash
 git clone https://github.com/taylordotfish/ncc
+cd ncc
 ```
 
 Build and install the program:
 
 ```bash
-cd ncc
 cargo install --path .
 ```
 

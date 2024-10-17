@@ -99,12 +99,12 @@ Download the source code:
 
 ```bash
 git clone REPO
+cd ncc
 ```
 
 Build and install the program:
 
 ```bash
-cd ncc
 cargo install --path .
 ```
 
