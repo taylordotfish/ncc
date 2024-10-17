@@ -102,7 +102,7 @@ fn run() -> Result<(), ()> {
     let bin = arg0
         .as_ref()
         .and_then(|s| Path::new(s).file_name()?.to_str())
-        .unwrap_or("ncc-alsa-send".as_ref());
+        .unwrap_or("ncc-alsa-send");
 
     let usage = Usage::new(bin);
     let args = Args::parse(args).map_err(|e| {
