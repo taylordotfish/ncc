@@ -21,8 +21,8 @@ use super::def;
 use super::{CompileCfg, Control, Optional};
 use crate::common::{Channel, MidiValue};
 use crate::parse;
-use serde::de::{self, Deserializer};
 use serde::Deserialize;
+use serde::de::{self, Deserializer};
 use std::fmt;
 use std::io::{self, Write};
 

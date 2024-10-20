@@ -23,8 +23,8 @@ use crate::controls::pot::{PickupCfg, Pot, PotCfg};
 use crate::controls::{self, Control, Optional, Pedal};
 use crate::parse::config::{ConfigSeed, DeserializeConfig};
 use crate::parse::{self, slice};
-use serde::de::{self, Deserializer};
 use serde::Deserialize;
+use serde::de::{self, Deserializer};
 use std::fmt;
 use std::io::{self, Write};
 

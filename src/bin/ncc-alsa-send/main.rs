@@ -129,10 +129,12 @@ fn run() -> Result<(), ()> {
     };
 
     run_verbose("amidi", ["-p".as_ref(), &*port, "-s".as_ref(), &*file])?;
-    run_verbose(
-        "amidi",
-        ["-p".as_ref(), &*port, "-d".as_ref(), "-t1".as_ref()],
-    )
+    run_verbose("amidi", [
+        "-p".as_ref(),
+        &*port,
+        "-d".as_ref(),
+        "-t1".as_ref(),
+    ])
 }
 
 fn main() -> ExitCode {

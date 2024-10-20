@@ -17,9 +17,9 @@
  * License along with ncc. If not, see <https://www.gnu.org/licenses/>.
  */
 
+use super::Input;
 use super::ansi::AnsiWriter;
 use super::parse;
-use super::Input;
 use serde::de;
 use std::fmt::{self, Display};
 use std::io::{self, Write};

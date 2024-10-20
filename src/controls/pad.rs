@@ -23,9 +23,9 @@ use crate::common::{Channel, Keypress, MidiNote, MidiValue};
 use crate::common::{Velocity, VelocityCfg};
 use crate::parse;
 use crate::parse::config::{ConfigSeed, DeserializeConfig};
+use serde::Deserialize;
 use serde::de::value::MapAccessDeserializer;
 use serde::de::{self, Deserializer, IntoDeserializer};
-use serde::Deserialize;
 use std::fmt::{self, Debug, Display};
 use std::io::{self, Write};
 
@@ -577,13 +577,10 @@ impl<'a> DeserializeConfig<'a, PadCfg> for Pad {
     where
         D: Deserializer<'a>,
     {
-        match DeserializeConfig::deserialize(
-            deserializer,
-            &OptionalPadCfg {
-                required: true,
-                pad: config,
-            },
-        )? {
+        match DeserializeConfig::deserialize(deserializer, &OptionalPadCfg {
+            required: true,
+            pad: config,
+        })? {
             Optional::None => unreachable!(),
             Optional::Some(pad) => Ok(pad),
         }
@@ -854,12 +851,9 @@ impl<'a> DeserializeConfig<'a, PadCfg> for Optional<Pad> {
     where
         D: Deserializer<'a>,
     {
-        DeserializeConfig::deserialize(
-            deserializer,
-            &OptionalPadCfg {
-                required: false,
-                pad: config,
-            },
-        )
+        DeserializeConfig::deserialize(deserializer, &OptionalPadCfg {
+            required: false,
+            pad: config,
+        })
     }
 }

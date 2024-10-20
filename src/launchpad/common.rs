@@ -23,8 +23,8 @@ use crate::controls::pad_fader::{Fader, Orientation};
 use crate::controls::{self, Control, Optional};
 use crate::parse::config::ConfigSeed;
 use crate::parse::{self, primitive, slice};
-use serde::de::{self, Deserializer};
 use serde::Deserialize;
+use serde::de::{self, Deserializer};
 use std::fmt::{self, Display};
 use std::io::{self, Write};
 

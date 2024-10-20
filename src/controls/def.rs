@@ -202,7 +202,7 @@ impl Definition {
                 min,
                 max,
             } => writer.write_all(&[
-                0x00, //
+                0x00,
                 number.value(),
                 max.value(),
                 min.value(),

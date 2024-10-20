@@ -29,8 +29,10 @@ where
 {
     type Value = T;
     type Error<E: de::Error> = WrappedError<F, E>;
-    type Child<'s, E: de::Error> = Wrapper<'s, F>
-        where Self: 's;
+    type Child<'s, E: de::Error>
+        = Wrapper<'s, F>
+    where
+        Self: 's;
 
     fn child<E>(&mut self) -> Wrapper<'_, F> {
         Wrapper(self.0)
@@ -61,8 +63,10 @@ where
 {
     type Value<T> = T;
     type Error = WrappedError<F, E>;
-    type Child<'s, T> = Wrapper<'s, F>
-        where Self: 's;
+    type Child<'s, T>
+        = Wrapper<'s, F>
+    where
+        Self: 's;
 
     fn child<T>(&mut self) -> Wrapper<'_, F> {
         Wrapper(self.0)

@@ -22,8 +22,8 @@ use super::{CompileCfg, Control, Optional};
 use crate::common::{Channel, MidiValue};
 use crate::parse;
 use crate::parse::config::{ConfigSeed, DeserializeConfig};
-use serde::de::{self, Deserializer};
 use serde::Deserialize;
+use serde::de::{self, Deserializer};
 use std::fmt;
 use std::io::{self, Write};
 
@@ -166,13 +166,10 @@ impl<'a> DeserializeConfig<'a, PotCfg> for Pot {
     where
         D: Deserializer<'a>,
     {
-        match DeserializeConfig::deserialize(
-            deserializer,
-            &OptionalPotCfg {
-                required: true,
-                pot: config,
-            },
-        )? {
+        match DeserializeConfig::deserialize(deserializer, &OptionalPotCfg {
+            required: true,
+            pot: config,
+        })? {
             Optional::None => unreachable!(),
             Optional::Some(pot) => Ok(pot),
         }
@@ -315,12 +312,9 @@ impl<'a> DeserializeConfig<'a, PotCfg> for Optional<Pot> {
     where
         D: Deserializer<'a>,
     {
-        DeserializeConfig::deserialize(
-            deserializer,
-            &OptionalPotCfg {
-                required: false,
-                pot: config,
-            },
-        )
+        DeserializeConfig::deserialize(deserializer, &OptionalPotCfg {
+            required: false,
+            pot: config,
+        })
     }
 }
