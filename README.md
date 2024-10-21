@@ -45,7 +45,8 @@ ncc 0.1.3-dev
 ```
 
 <details>
-<summary>Manual installation</summary><p>
+<summary>Manual installation</summary>
+
 To compile and install ncc manually, ensure the following dependencies are
 installed:
 
@@ -75,7 +76,7 @@ $ cargo build --release
 $ ./target/release/ncc --version
 ncc 0.1.3-dev
 ```
-</p></details>
+</details>
 
 Usage
 -----

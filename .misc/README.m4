@@ -85,7 +85,8 @@ ncc VERSION
 ```
 
 <details>
-<summary>Manual installation</summary><p>
+<summary>Manual installation</summary>
+
 To compile and install ncc manually, ensure the following dependencies are
 installed:
 
@@ -115,7 +116,7 @@ $ cargo build --release
 $ ./target/release/ncc --version
 ncc VERSION
 ```
-</p></details>
+</details>
 
 })dnl
 Usage
