@@ -22,6 +22,12 @@ ifelse(defn(`VERSION'), `', `errprint(
     `error: could not determine package version
 ')m4exit(1)')dnl
 dnl
+ifdef(`RELEASE',, `define(`RELEASE',
+    esyscmd(`git describe --tags --abbrev=0 | tr -d "\n"'))')dnl
+ifelse(defn(`RELEASE'), `', `errprint(
+    `error: could not determine most recent release
+')m4exit(1)')dnl
+dnl
 ifdef(`MSRV',, `define(`MSRV',
     esyscmd(`grep "^rust-version\s*=" ../Cargo.toml |
         grep -o "[0-9.]\+" | tr -d "\n"'))')dnl
@@ -81,7 +87,7 @@ in your `PATH`, you can run the program simply by typing `ncc` in your shell:
 
 ```console
 $ ncc --version
-ncc VERSION
+ncc RELEASE
 ```
 
 <details>
