@@ -18,7 +18,8 @@
  */
 
 use std::ffi::OsStr;
-use std::io::{self, BufWriter, Write};
+use std::fs::{self, File};
+use std::io::{self, BufWriter, Read, Write};
 use std::path::Path;
 use std::process::{Command, ExitCode};
 
@@ -96,6 +97,42 @@ where
     Err(())
 }
 
+fn ensure_syx<P: AsRef<Path>>(path: P) -> Result<(), ()> {
+    let path = path.as_ref();
+    let metadata = fs::metadata(path).map_err(|e| {
+        eprintln!("error: could not read `{}`: {e}", path.display());
+    })?;
+    let ft = metadata.file_type();
+    if !ft.is_file() {
+        eprintln!("error: not a file: {}", path.display());
+        return Err(());
+    }
+    #[cfg(unix)]
+    {
+        use std::os::unix::fs::FileTypeExt;
+        if ft.is_block_device()
+            || ft.is_char_device()
+            || ft.is_fifo()
+            || ft.is_socket()
+        {
+            // Don't attempt to check anything that isn't a regular file on
+            // disk.
+            return Ok(());
+        }
+    }
+    match File::open(path).and_then(|f| f.bytes().next().transpose()) {
+        Err(e) => {
+            eprintln!("error: could not read `{}`: {e}", path.display());
+            Err(())
+        }
+        Ok(Some(0xf0)) => Ok(()),
+        Ok(_) => {
+            eprintln!("error: not a SysEx file: {}", path.display());
+            Err(())
+        }
+    }
+}
+
 fn run() -> Result<(), ()> {
     let mut args = std::env::args_os();
     let arg0 = args.next();
@@ -128,6 +165,7 @@ fn run() -> Result<(), ()> {
         } => (port, file),
     };
 
+    ensure_syx(&file)?;
     run_verbose("amidi", ["-p".as_ref(), &*port, "-s".as_ref(), &*file])?;
     run_verbose("amidi", [
         "-p".as_ref(),
