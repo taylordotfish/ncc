@@ -41,7 +41,7 @@ in your `PATH`, you can run the program simply by typing `ncc` in your shell:
 
 ```console
 $ ncc --version
-ncc 0.1.2
+ncc 0.1.3
 ```
 
 <details>
@@ -74,7 +74,7 @@ Alternatively, you can build and run ncc locally without installing:
 ```console
 $ cargo build --release
 $ ./target/release/ncc --version
-ncc 0.1.3-dev
+ncc 0.1.3
 ```
 </details>
 

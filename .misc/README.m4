@@ -22,6 +22,11 @@ ifelse(defn(`VERSION'), `', `errprint(
     `error: could not determine package version
 ')m4exit(1)')dnl
 dnl
+dnl set RELEASE to VERSION if not a dev version
+ifdef(`RELEASE',, `ifelse(
+    regexp(defn(`VERSION'), `[^0-9.]'),
+    `-1',
+    `define(`RELEASE', defn(`VERSION'))')')dnl
 ifdef(`RELEASE',, `define(`RELEASE',
     esyscmd(`git describe --tags --abbrev=0 | tr -d "\n"'))')dnl
 ifelse(defn(`RELEASE'), `', `errprint(
