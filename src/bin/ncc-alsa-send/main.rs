@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 taylor.fish <contact@taylor.fish>
+ * Copyright (C) 2024-2025 taylor.fish <contact@taylor.fish>
  *
  * This file is part of ncc.
  *

@@ -74,7 +74,7 @@ Alternatively, you can build and run ncc locally without installing:
 ```console
 $ cargo build --release
 $ ./target/release/ncc --version
-ncc 0.1.3
+ncc 0.1.4-dev
 ```
 </details>
 

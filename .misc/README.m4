@@ -1,4 +1,4 @@
-dnl| Copyright (C) 2024 taylor.fish <contact@taylor.fish>
+dnl| Copyright (C) 2024-2025 taylor.fish <contact@taylor.fish>
 dnl|
 dnl| This file is part of ncc.
 dnl|
