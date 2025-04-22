@@ -39,7 +39,7 @@ impl<'a> Deserialize<'a> for Orientation {
     {
         struct Visitor;
 
-        impl<'a> de::Visitor<'a> for Visitor {
+        impl de::Visitor<'_> for Visitor {
             type Value = Orientation;
 
             fn expecting(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
@@ -75,7 +75,7 @@ impl<'a> Deserialize<'a> for Mode {
     {
         struct Visitor;
 
-        impl<'a> de::Visitor<'a> for Visitor {
+        impl de::Visitor<'_> for Visitor {
             type Value = Mode;
 
             fn expecting(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

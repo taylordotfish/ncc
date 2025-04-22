@@ -58,7 +58,7 @@ impl<'a> DeserializeConfig<'a, PickupCfg> for Pickup {
             cfg: &'a PickupCfg,
         }
 
-        impl<'a> de::Visitor<'a> for Visitor<'_> {
+        impl de::Visitor<'_> for Visitor<'_> {
             type Value = Pickup;
 
             fn expecting(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

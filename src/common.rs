@@ -135,7 +135,7 @@ impl<'a> Deserialize<'a> for NoteName {
     {
         struct Visitor;
 
-        impl<'a> de::Visitor<'a> for Visitor {
+        impl de::Visitor<'_> for Visitor {
             type Value = NoteName;
 
             fn expecting(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
@@ -178,7 +178,7 @@ impl<'a> Deserialize<'a> for MidiNote {
     {
         struct Visitor;
 
-        impl<'a> de::Visitor<'a> for Visitor {
+        impl de::Visitor<'_> for Visitor {
             type Value = MidiNote;
 
             fn expecting(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
@@ -256,7 +256,7 @@ impl<'a> DeserializeConfig<'a, VelocityCfg> for Velocity {
             cfg: &'a VelocityCfg,
         }
 
-        impl<'a> de::Visitor<'a> for Visitor<'_> {
+        impl de::Visitor<'_> for Visitor<'_> {
             type Value = Velocity;
 
             fn expecting(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
@@ -330,7 +330,7 @@ impl<'a> Deserialize<'a> for Channel {
     {
         struct Visitor;
 
-        impl<'a> de::Visitor<'a> for Visitor {
+        impl de::Visitor<'_> for Visitor {
             type Value = Channel;
 
             fn expecting(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
@@ -427,7 +427,7 @@ impl<'a> Deserialize<'a> for Name {
     {
         struct Visitor;
 
-        impl<'a> de::Visitor<'a> for Visitor {
+        impl de::Visitor<'_> for Visitor {
             type Value = Name;
 
             fn expecting(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

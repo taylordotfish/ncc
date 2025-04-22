@@ -405,7 +405,7 @@ impl<'a> Deserialize<'a> for FaderMap {
             last: PadCfg,
         }
 
-        impl<'a, 'b> slice::ElementSeed<'a> for &'b ButtonElemSeed {
+        impl<'b> slice::ElementSeed<'_> for &'b ButtonElemSeed {
             type Seed = ConfigSeed<'b, Optional<Pad>, PadCfg>;
 
             fn get(&self, index: usize) -> Self::Seed {

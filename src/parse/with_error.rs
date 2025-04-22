@@ -23,7 +23,7 @@ use serde::de::{self, Deserialize, DeserializeSeed, Deserializer};
 
 struct Wrapper<'f, F>(&'f mut Option<F>);
 
-impl<'a, F, T> wrap::ValueWrapper<'a, T> for Wrapper<'_, F>
+impl<F, T> wrap::ValueWrapper<'_, T> for Wrapper<'_, F>
 where
     F: de::Error,
 {
@@ -56,7 +56,7 @@ where
     }
 }
 
-impl<'a, F, E> wrap::ErrorWrapper<'a, E> for Wrapper<'_, F>
+impl<F, E> wrap::ErrorWrapper<'_, E> for Wrapper<'_, F>
 where
     F: de::Error,
     E: de::Error,

@@ -43,7 +43,7 @@ struct IndexKey {
     max: usize,
 }
 
-impl<'a> de::Visitor<'a> for IndexKey {
+impl de::Visitor<'_> for IndexKey {
     type Value = usize;
 
     fn expecting(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

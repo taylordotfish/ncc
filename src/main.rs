@@ -70,7 +70,7 @@ impl<'a> Deserialize<'a> for Version {
 
         struct Visitor;
 
-        impl<'a> de::Visitor<'a> for Visitor {
+        impl de::Visitor<'_> for Visitor {
             type Value = Version;
 
             fn expecting(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
@@ -212,7 +212,7 @@ impl<'a> Deserialize<'a> for Device {
 
         struct Visitor;
 
-        impl<'a> de::Visitor<'a> for Visitor {
+        impl de::Visitor<'_> for Visitor {
             type Value = Device;
 
             fn expecting(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
@@ -254,7 +254,7 @@ impl<'a> Deserialize<'a> for CustomMode {
 
         struct FieldSeed(&'static str);
 
-        impl<'a> de::Visitor<'a> for FieldSeed {
+        impl de::Visitor<'_> for FieldSeed {
             type Value = ();
 
             fn expecting(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

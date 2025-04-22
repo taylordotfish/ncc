@@ -71,7 +71,7 @@ pub struct FmtWriter<'a, W: Write> {
     node: FmtNode<'a>,
 }
 
-impl<'a, W: Write> FmtWriter<'a, W> {
+impl<W: Write> FmtWriter<'_, W> {
     pub fn with_fmt(&mut self, fmt: &'static str) -> FmtWriter<'_, W> {
         if self.base.depth != self.node.depth() {
             self.base.depth = 0;
@@ -105,7 +105,7 @@ impl<'a, W: Write> FmtWriter<'a, W> {
     }
 }
 
-impl<'a, W: Write> Write for FmtWriter<'a, W> {
+impl<W: Write> Write for FmtWriter<'_, W> {
     fn write(&mut self, buf: &[u8]) -> io::Result<usize> {
         self.activate()?;
         self.base.writer.write(buf)

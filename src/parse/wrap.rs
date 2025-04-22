@@ -677,7 +677,7 @@ where
     Wrapped::new(seed, wrapper).deserialize(deserializer)
 }
 
-impl<'de, T> ValueWrapper<'de, T> for () {
+impl<T> ValueWrapper<'_, T> for () {
     type Value = T;
     type Error<E: de::Error> = E;
     type Child<'s, E: de::Error> = Self;
@@ -693,7 +693,7 @@ impl<'de, T> ValueWrapper<'de, T> for () {
     }
 }
 
-impl<'de, E> ErrorWrapper<'de, E> for ()
+impl<E> ErrorWrapper<'_, E> for ()
 where
     E: de::Error,
 {

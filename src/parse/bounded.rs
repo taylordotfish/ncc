@@ -26,7 +26,7 @@ pub struct Visitor {
     pub max: u64,
 }
 
-impl<'a> de::Visitor<'a> for Visitor {
+impl de::Visitor<'_> for Visitor {
     type Value = u64;
 
     fn expecting(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

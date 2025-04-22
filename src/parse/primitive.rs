@@ -37,7 +37,7 @@ struct IntVisitor<T> {
     max: T,
 }
 
-impl<'a, T> de::Visitor<'a> for IntVisitor<T>
+impl<T> de::Visitor<'_> for IntVisitor<T>
 where
     T: Display + TryFrom<u64> + TryFrom<i64>,
 {
@@ -71,7 +71,7 @@ impl detail::Primitive for bool {
     {
         struct Visitor;
 
-        impl<'a> de::Visitor<'a> for Visitor {
+        impl de::Visitor<'_> for Visitor {
             type Value = bool;
 
             fn expecting(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

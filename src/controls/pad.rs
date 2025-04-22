@@ -42,7 +42,7 @@ impl<'a> Deserialize<'a> for Behavior {
     {
         struct Visitor;
 
-        impl<'a> de::Visitor<'a> for Visitor {
+        impl de::Visitor<'_> for Visitor {
             type Value = Behavior;
 
             fn expecting(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
@@ -128,7 +128,7 @@ impl<'a> DeserializeConfig<'a, NoteCfg> for Note {
             cfg: &'a NoteCfg,
         }
 
-        impl<'a> de::Visitor<'a> for FieldVisitor<'_> {
+        impl de::Visitor<'_> for FieldVisitor<'_> {
             type Value = Field;
 
             fn expecting(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
@@ -649,7 +649,7 @@ impl<'a> DeserializeConfig<'a, OptionalPadCfg<'_>> for Optional<Pad> {
             cfg: &'a PadCfg,
         }
 
-        impl<'a> de::Visitor<'a> for FieldVisitor<'_> {
+        impl de::Visitor<'_> for FieldVisitor<'_> {
             type Value = Field;
 
             fn expecting(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
