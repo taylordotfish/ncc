@@ -48,3 +48,13 @@ your Novation MIDI device as follows:
 
    The second command ensures that the response from the device is read after
    the custom mode is transferred; otherwise, the change may not take effect.
+
+Troubleshooting
+---------------
+
+If nothing happens, the device’s firmware may need to be updated. Currently
+this must be done from Components. The following firmware versions are known to
+work:
+
+* Launchkey Mini \[MK3]: 1.1.1
+* Launchpad X: 2.0.1

@@ -19,7 +19,7 @@ Supported devices
 * Launchkey Mini \[MK3]: full support, tested[^1]
 * FLkey: full support
 * FLkey Mini: full support
-* Launchpad X: full support
+* Launchpad X: full support, tested[^1]
 * Launchpad Mini \[MK3]: full support
 
 [^1]: Tested on real hardware.
