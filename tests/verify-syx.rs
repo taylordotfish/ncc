@@ -335,7 +335,13 @@ impl TestCase {
         if hash != self.toml_hash {
             return Err(Fail::BadHash);
         }
-        let mut child = Command::new("ncc")
+
+        const BIN: &str = if cfg!(debug_assertions) {
+            "target/debug/ncc"
+        } else {
+            "target/release/ncc"
+        };
+        let mut child = Command::new(BIN)
             .args(["-", "-o-"])
             .stdin(Stdio::piped())
             .stdout(Stdio::piped())

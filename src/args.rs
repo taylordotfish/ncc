@@ -58,7 +58,7 @@ impl Display for Usage<'_> {
 }
 
 const VERSION_MESSAGE: &str = "\
-Copyright (C) 2024 taylor.fish <contact@taylor.fish>
+Copyright (C) 2024-2025 taylor.fish <contact@taylor.fish>
 Licensed under the GNU Affero General Public License, version 3 or
 later; see <https://www.gnu.org/licenses/>. There is NO WARRANTY;
 see the license for details.
