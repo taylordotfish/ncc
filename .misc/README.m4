@@ -1,4 +1,4 @@
-dnl| Copyright (C) 2024-2025 taylor.fish <contact@taylor.fish>
+dnl| Copyright (C) 2024-2026 taylor.fish <contact@taylor.fish>
 dnl|
 dnl| This file is part of ncc.
 dnl|
@@ -79,9 +79,13 @@ ifdef({RUST},, {dnl
 Installation
 ------------
 
-Ensure [Rust][rust-inst] MSRV or later is installed. Then install with Cargo:
+Ensure [Rust][rust-inst] is installed. The latest version is recommended;
+versions as old as 1.74 are supported, but they may require some additional
+configuration.
 
 [rust-inst]: https://www.rust-lang.org/tools/install
+
+Then, install with Cargo:
 
 ```bash
 cargo install ncc
@@ -96,12 +100,37 @@ ncc RELEASE
 ```
 
 <details>
+<summary>Troubleshooting older Rust versions</summary>
+
+---
+
+If you’re using an older version of Rust, installation may fail with an error
+like “*X* cannot be built because it requires rustc *Y* or newer”. If you’re
+using Rust **1.84 or later**, run this command instead:
+
+```bash
+CARGO_RESOLVER_INCOMPATIBLE_RUST_VERSIONS=fallback cargo install ncc
+```
+
+If you’re using a version of Rust between MSRV and 1.83, run this command:
+
+```bash
+cargo install ncc --locked
+```
+
+However, this will use outdated versions of ncc’s dependencies, so upgrading to
+at least Rust 1.84 is recommended.
+
+---
+</details>
+
+<details>
 <summary>Manual installation</summary>
 
 To compile and install ncc manually, ensure the following dependencies are
 installed:
 
-* [Rust] MSRV or later
+* [Rust] MSRV or later (latest version recommended)
 * [Git]
 
 [Rust]: https://www.rust-lang.org
@@ -119,6 +148,25 @@ Build and install the program:
 ```bash
 cargo install --path .
 ```
+
+<details>
+<summary>Troubleshooting older Rust versions</summary>
+
+---
+
+If you’re using Rust 1.83 or earlier, installation may fail with an error like
+“*X* cannot be built because it requires rustc *Y* or newer”. In this case, run
+this command instead:
+
+```bash
+cargo install ncc --locked
+```
+
+However, this will use outdated versions of ncc’s dependencies, so upgrading to
+at least Rust 1.84 is recommended.
+
+---
+</details>
 
 Alternatively, you can build and run ncc locally without installing:
 
